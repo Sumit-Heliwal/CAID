@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}
+{{title}}{% endblock %}
+{% block heading %}
+{{title}}{% endblock %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <form action = "/update_Employee_details/{{id}}"  method = "post">
+        <table class="table">
+        <tbody>
+            {% csrf_token %}
+            {% for field in data %}
+            <tr>
+            <td>{{ field.label }}</td>
+            <td>{{ field }}</td>
+            </tr>
+            <tr>
+            {% endfor %}
+            <tr>
+            <td style="text-align: center ">
+                <input type="submit" value="Submit">
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+
+    {{errors}}
+</div>
+{% endblock %}

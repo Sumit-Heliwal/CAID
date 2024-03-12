@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block title %}
+{{title}}{% endblock %}
+{% block heading %}
+{{title}}{% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+
+
+
+<style>
+    .btnsubmit {
+        width: 80px;
+        height: 35px;
+    }
+</style>
+
+                        
+                <div class="row mt-2">
+                    <div class="col-lg-10">
+                        <form method="post" style="margin-top: 5%" action="{% url 'personal_data' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-4 col-12 mb-3 text-center">
+                                    <label for="Code no">Code no</label>
+                                </div>
+                                <div class="col-lg-6 col-12 mb-3 text-center">
+                                    <input type="text" name="code_no" maxlength="4" required id="id_code_no">
+                                </div>
+                                <div class="col-10 text-center">
+                                    <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% if a == True %}
+                <div class="container mt-5 text-center">
+                    <table class="table">
+
+                        <tbody>
+                            {% for each in data %}
+                    
+                            <tr>
+                                <td>
+                                    Code_No
+                                </td>
+                                <td>
+                                    {{each.code_no}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Passport_Size_Photo
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.passport_size_photo}}">Passport_Size_Photo</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Pan_Card
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.pan_card}}">Pan_Card</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Aadhar_Card
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.aadhar_card}}">Aadhar_Card</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Passport
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.passport}}">Passport</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Driving_Licence
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.driving_licence}}">Driving_Licence</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    GST
+                                </td>
+                                <td>
+                                    <a href="/media/{{each.gst}}">GST</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Remarks
+                                </td>
+                                <td>
+                                    {{each.Remarks}}
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                    <hr>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if a == False %}
+    <div id="InfoBanner">
+        <span class="reversed reversedRight">
+          <span>
+            &#9888;
+          </span>
+        </span>
+        <span class="reversed reversedLeft">
+          Warning {{errors}}!!
+        </span>
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}
