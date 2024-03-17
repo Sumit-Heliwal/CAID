@@ -2,7 +2,7 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import personal_file
+from .models import company_file
 from PIL import Image
 from django.conf import settings
 from .forms import *
@@ -24,11 +24,11 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-def personal_data_entry(request):
-    title = "Personal_Data_entry"
-    form = Add_Personal_Data()
+def company_data_entry(request):
+    title = "company_data_entry"
+    form = Add_Company_Data()
     if request.method == 'POST':
-        form = Add_Personal_Data(request.POST, request.FILES)
+        form = Add_Company_Data(request.POST, request.FILES)
         if form.is_valid():
             # save the form data to model
             photo = form.save(commit=False)
@@ -36,22 +36,22 @@ def personal_data_entry(request):
             photo.uploader = request.user
             # now we can save
             photo.save()
-            return redirect("personal_data") 
+            return redirect("company_data") 
     return render(request, "input_data.html" , {'data': form , 'title':title})
 
-def personal_data(request):
-    title = "Personal_Data"
+def company_data(request):
+    title = "company_data"
     if request.method == 'POST':
             code = request.POST.get('code_no')
-            if(personal_file.objects.filter(code_no=code).exists()):
-                data = personal_file.objects.filter(code_no=code)
+            if(company_file.objects.filter(code_no=code).exists()):
+                data = company_file.objects.filter(code_no=code)
                 a = True
-                return render(request,'personal_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+                return render(request,'company_data_search.html' ,{'title' : title , 'data' : data , 'a' : a})     
             else:
                 errors = 'Invalid code'
                 a = False
-                return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
-    return render( request, "personal_data_search.html", { 'title' : title})
+                return render(request,'company_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "company_data_search.html", { 'title' : title})
 
 
 # def contact(request):

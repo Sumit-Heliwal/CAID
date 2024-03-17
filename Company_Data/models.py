@@ -1,0 +1,30 @@
+from django.db import models
+from Personal_Data.models import *
+# Create your models here.
+class company_file(models.Model):
+    code_no =  models.CharField(max_length= 4, primary_key=True)
+    name = models.CharField(max_length=50)
+    pan_card = models.FileField(upload_to='company_file', blank=True, null=True)
+    pan_no = models.CharField(max_length=50)
+    udyam_aadhar = models.FileField(upload_to='company_file', blank=True, null=True)
+    udyam_aadhar_no = models.CharField(max_length=50)
+    tan = models.FileField(upload_to='company_file', blank=True, null=True)
+    tan_no = models.CharField(max_length=50)
+    gst = models.FileField(upload_to='company_file', blank=True, null=True)
+    gst_no = models.CharField(max_length=50)
+    din = models.FileField(upload_to='company_file', blank=True, null=True)
+    din_no = models.CharField(max_length=50)
+    PTEC = models.FileField(upload_to='company_file', blank=True, null=True)
+    PTEC_no = models.CharField(max_length=50)
+    PTRC = models.FileField(upload_to='company_file', blank=True, null=True)
+    PTRC_no = models.CharField(max_length=50)
+    incorporation_certificate= models.FileField(upload_to='company_file', blank=True, null=True)
+    partnership_deed = models.FileField(upload_to='company_file', blank=True, null=True)
+    director_partner_list = models.ManyToManyField(personal_file)
+    # MOA = models.FileField(upload_to='company_file', blank=True, null=True)
+    # AOA = models.FileField(upload_to='company_file', blank=True, null=True)
+    # Passport_Photo = models.FileField(upload_to='company_file', blank=True, null=True)
+    # Passport_Photo = models.FileField(upload_to='company_file', blank=True, null=True)
+    Remarks = models.CharField(max_length=300)
+    def __str__(self):
+         return (self.code_no)

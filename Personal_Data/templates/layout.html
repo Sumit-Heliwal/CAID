@@ -37,10 +37,17 @@
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Personal Data </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'personal_data'  %}">View</a></li>
-                  <li><a class="dropdown-item" href="{% url 'personal_data_add'  %}">Add</a></li>
-                
+                  <li><a class="dropdown-item" href="{% url 'personal_data_add'  %}">Add</a></li> 
+                  </ul>
               </li>
-            </ul>
+              <li class="nav-item dropdown" id="myDropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Company Data </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'company_data'  %}">View</a></li>
+                  <li><a class="dropdown-item" href="{% url 'company_data_add'  %}">Add</a></li>
+                </ul>
+              </li>
+            
               <li class="nav-item"><a class="nav-link" href=""> Contact </a></li>
               <!-- <li class="nav-item">
                 <a class="nav-link disabled">Disabled</a>
