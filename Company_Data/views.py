@@ -25,7 +25,7 @@ def about(request):
     return render(request, "about.html")
 
 def company_data_entry(request):
-    title = "company_data_entry"
+    title = "Company Data Entry"
     form = Add_Company_Data()
     if request.method == 'POST':
         form = Add_Company_Data(request.POST, request.FILES)
@@ -40,7 +40,7 @@ def company_data_entry(request):
     return render(request, "input_data.html" , {'data': form , 'title':title})
 
 def company_data(request):
-    title = "company_data"
+    title = "Company Data"
     if request.method == 'POST':
             code = request.POST.get('code_no')
             if(company_file.objects.filter(code_no=code).exists()):

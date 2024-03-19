@@ -25,7 +25,7 @@ def about(request):
     return render(request, "about.html")
 
 def personal_data_entry(request):
-    title = "Personal_Data_entry"
+    title = "Personal Data Entry"
     form = Add_Personal_Data()
     if request.method == 'POST':
         form = Add_Personal_Data(request.POST, request.FILES)
@@ -40,7 +40,7 @@ def personal_data_entry(request):
     return render(request, "input_data.html" , {'data': form , 'title':title})
 
 def personal_data(request):
-    title = "Personal_Data"
+    title = "Personal Data"
     if request.method == 'POST':
             code = request.POST.get('code_no')
             if(personal_file.objects.filter(code_no=code).exists()):

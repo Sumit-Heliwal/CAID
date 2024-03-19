@@ -24,13 +24,13 @@
                         <form method="post" style="margin-top: 5%" action="{% url 'company_data' %}">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-lg-4 col-12 mb-3 text-center">
+                                <div class="col-lg-6 col-12 mb-3 text-center">
                                     <label for="Code no">Code no</label>
                                 </div>
                                 <div class="col-lg-6 col-12 mb-3 text-center">
                                     <input type="text" name="code_no" maxlength="4" required id="id_code_no">
                                 </div>
-                                <div class="col-10 text-center">
+                                <div class="col-12 text-center">
                                     <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 {% if a == True %}
-                <div class="container mt-5 text-center">
+                <div class="container col-lg-8 mt-5">
                     <table class="table">
 
                         <tbody>
