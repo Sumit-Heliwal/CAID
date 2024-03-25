@@ -24,13 +24,13 @@
                         <form method="post" style="margin-top: 5%" action="{% url 'personal_data' %}">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-lg-4 col-12 mb-3 text-center">
+                                <div class="col-lg-6 col-12 mb-3 text-center">
                                     <label for="Code no">Code no</label>
                                 </div>
                                 <div class="col-lg-6 col-12 mb-3 text-center">
                                     <input type="text" name="code_no" maxlength="4" required id="id_code_no">
                                 </div>
-                                <div class="col-10 text-center">
+                                <div class="col-12 text-center">
                                     <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 {% if a == True %}
-                <div class="container mt-5 text-center">
+                <div class="container col-lg-8 mt-5">
                     <table class="table">
 
                         <tbody>
@@ -57,14 +57,23 @@
                                 <tr>
                                     <td>Passport Size Photo</td>
                                     <td>
+                                    {% if each.passport_size_photo %}
                                         <a href="/media/{{each.passport_size_photo}}">Passport Size Photo</a>
-                                    </td>
+                                        {% else %}
+                                        Passport Size Photo not uploaded
+                                      {% endif %}
+                                      
+                                      </td>
                                   </tr>
 
                                 <tr>
                                     <td>Pan card</td>
                                     <td>
-                                        <a href="/media/{{each.pan_card}}">Pan_Card</a>
+                                    {% if each.pan_card %}
+                                      <a href="/media/{{each.pan_card}}">Pan Card</a>
+                                    {% else %}
+                                      Pan Card not uploaded
+                                    {% endif %}
                                     </td>
                                   </tr>
                               <tr>
@@ -78,7 +87,11 @@
                               <tr>
                                 <td>Aadhar Card</td>
                                 <td>
+                                  {% if each.aadhar_card %}
                                     <a href="/media/{{each.aadhar_card}}">Aadhar</a>
+                                    {% else %}
+                                    Aadhar not uploaded
+                                    {% endif %}
                                 </td>
                               </tr>
                               <tr>
@@ -92,7 +105,11 @@
                               <tr>
                                 <td>Passport</td>
                                 <td>
+                                  {% if each.passport %}
                                     <a href="/media/{{each.passport}}">Passport</a>
+                                    {% else %}
+                                    Passport not uploaded
+                                    {% endif %}
                                 </td>
                               </tr>
                               <tr>
@@ -106,8 +123,12 @@
                               <tr>
                                 <td>Driving Licence</td>
                                 <td>
-                                    <a href="/media/{{each.driving_licence}}">Driving Licence</a>
-                                </td>
+                                  {% if each.driving_licence %}
+                                  <a href="/media/{{each.driving_licence}}">Driving Licence</a>
+                                  {% else %}
+                                  Driving Licence not uploaded
+                                  {% endif %}
+                              </td>
                               </tr>
                               <tr>
                                 
@@ -119,8 +140,12 @@
                               <tr>
                                 <td>Gst</td>
                                 <td>
-                                    <a href="/media/{{each.gst}}">Gst</a>
-                                </td>
+                                  {% if each.gst %}
+                                  <a href="/media/{{each.gst}}">Gst</a>
+                                  {% else %}
+                                  Gst not uploaded
+                                  {% endif %}
+                               </td>
                               </tr>
                               <tr>
                                 
@@ -133,8 +158,12 @@
                               <tr>
                                 <td>Din</td>
                                 <td>
-                                    <a href="/media/{{each.din}}">DIN</a>
-                                </td>
+                                  {% if each.din %}
+                                  <a href="/media/{{each.din}}">DIN</a>
+                                  {% else %}
+                                  DIN not uploaded
+                                  {% endif %}
+                              </td>
                               </tr>
                               <tr>
                                 
@@ -147,8 +176,12 @@
                               <tr>
                                 <td>PTEC</td>
                                 <td>
-                                    <a href="/media/{{each.PTEC}}">PTEC</a>
-                                </td>
+                                  {% if each.PTEC %}
+                                  <a href="/media/{{each.PTEC}}">PTEC</a>
+                                  {% else %}
+                                  PTEC not uploaded
+                                  {% endif %}
+                               </td>
                               </tr>
                               <tr>
                                 

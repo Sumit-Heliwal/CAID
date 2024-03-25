@@ -21,12 +21,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fn+&eu(6)6qzf^1me=lkb($cyr!$7@+%m&%5e49xb$(@duv4v$'
+SECRET_KEY = 'django-secure-fn+&eu(6)6qzf^1me=lkb($cyr!$7@+%m&%5e49xb$(@duv4v$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# # security.W016
+# CSRF_COOKIE_SECURE = False
+
+# # security.W012
+# SESSION_COOKIE_SECURE = False
+
+# # security.W008
+# SECURE_SSL_REDIRECT = False
+
+# # security.W004
+# SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+
+# # Another security settings
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -34,10 +52,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    "whitenoise.runserver_nostatic",
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise',
     'Personal_Data',
     'Company_Data',
        
@@ -45,6 +65,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,11 +80,13 @@ ROOT_URLCONF = 'CAID.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -109,15 +133,24 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
+
+# LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+# STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -126,9 +159,26 @@ STATICFILES_DIRS= (
     os.path.join(BASE_DIR,''),
 )
 
+# STATIC_ROOT = BASE_DIR / 'productionfiles'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+#MEDIA_ROOT= BASE_DIR / 'media'
+# STATICFILES_DIRS = [
+    # BASE_DIR / '',
+# ]
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Static file serving.
+# https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}

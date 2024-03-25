@@ -1,0 +1,224 @@
+{% extends "layout.html" %}
+{% block title %}
+{{title}}{% endblock %}
+{% block heading %}
+{{title}}{% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+
+
+
+<style>
+    .btnsubmit {
+        width: 80px;
+        height: 35px;
+    }
+</style>
+
+                        
+                <div class="row mt-2">
+                    <div class="col-lg-10">
+                        <form method="post" style="margin-top: 5%" enctype="multipart/form-data" action="{% url 'personal_data' %}{{instance.code_no}}/">
+                            {% csrf_token %}
+                            <div class="container col-lg-8 mt-5">
+                              <table class="table">
+          
+                                  <tbody>
+                                    <tr>
+
+                                      <td>Code no</td>
+                                      <td><input disabled type="text" name="code_no" maxlength="4" required value ={{instance.code_no}} id="id_code_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Name</td>
+                                      <td><input type="text" name="name" maxlength="50" required value ={{instance.name}} id="id_name"></td>
+                            
+                                    </tr>
+                                    <tr>
+                            
+                                      <td>Passport size photo</td>
+                                      <td><input type="file" name="passport_size_photo" id="id_passport_size_photo">Currently:{% if instance.passport_size_photo %}
+                                        <a href="/media/{{instance.passport_size_photo}}">Passport Size Photo</a>
+                                        {% else %}
+                                        Passport Size Photo not uploaded
+                                      {% endif %}
+                                      </td>
+                                      
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Pan card</td>
+                                      <td><input type="file" name="pan_card" id="id_pan_card">Currently:{% if instance.pan_card %}
+                                        <a href="/media/{{instance.pan_card}}">Pan Card</a>
+                                      {% else %}
+                                        Pan Card not uploaded
+                                      {% endif %}
+                                      </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Pan no</td>
+                                      <td><input type="text" name="pan_no" maxlength="50" required value ={{instance.pan_no}} id="id_pan_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Aadhar card</td>
+                                      <td><input type="file" name="aadhar_card" id="id_aadhar_card">Currently:{% if instance.aadhar_card %}
+                                        <a href="/media/{{instance.aadhar_card}}">Aadhar</a>
+                                        {% else %}
+                                        Aadhar not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Aadhar card no</td>
+                                      <td><input type="text" name="aadhar_card_no" maxlength="50" required value ={{instance.aadhar_card_no}} id="id_aadhar_card_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Passport</td>
+                                      <td><input type="file" name="passport"  id="id_passport">  Currently:{% if instance.passport %}
+                                        <a href="/media/{{instance.passport}}">Passport</a>
+                                        {% else %}
+                                        Passport not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Passport no</td>
+                                      <td><input type="text" name="passport_no" maxlength="50" required value ={{instance.passport_no}} id="id_passport_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Driving licence</td>
+                                      <td><input type="file" name="driving_licence" id="id_driving_licence">  Currently:{% if instance.driving_licence %}
+                                        <a href="/media/{{instance.driving_licence}}">Driving Licence</a>
+                                        {% else %}
+                                        Driving Licence not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Driving licence no</td>
+                                      <td><input type="text" name="driving_licence_no" maxlength="50" required value ={{instance.driving_licence_no}} id="id_driving_licence_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Gst</td>
+                                      <td><input type="file" name="gst" id="id_gst">    Currently:{% if instance.gst %}
+                                        <a href="/media/{{instance.gst}}">Gst</a>
+                                        {% else %}
+                                        Gst not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Gst no</td>
+                                      <td><input type="text" name="gst_no" maxlength="50" required value ={{instance.gst_no}} id="id_gst_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Din</td>
+                                      <td><input type="file" name="din" id="id_din">Currently:{% if instance.din %}
+                                        <a href="/media/{{instance.din}}">DIN</a>
+                                        {% else %}
+                                        DIN not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>Din no</td>
+                                      <td><input type="text" name="din_no" maxlength="50" required value ={{instance.din_no}} id="id_din_no"></td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>PTEC</td>
+                                      <td><input type="file" name="PTEC" id="id_PTEC">    Currently:{% if instance.PTEC %}
+                                        <a href="/media/{{instance.PTEC}}">PTEC</a>
+                                        {% else %}
+                                        PTEC not uploaded
+                                        {% endif %}
+                                    </td>
+                            
+                                    </tr>
+                                      
+                                    <tr>
+                            
+                                      <td>PTEC no</td>
+                                      <td><input type="text" name="PTEC_no" maxlength="50" required value ={{instance.PTEC_no}} id="id_PTEC_no"></td>
+                            
+                                    </tr>
+                                    <tr>
+                            
+                                      <td>Remarks</td>
+                                      <td><input type="text" name="Remarks" maxlength="300" required value ={{instance.Remarks}} id="id_Remarks"></td>
+                            
+                                    </tr>   
+                                      <td style="text-align: center">
+                                        <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                              <hr>
+                            </div>
+             
+                       
+                        </form>
+                      </tbody>
+                    </table>
+                    </div>
+                </div>
+    {% if a == False %}
+    <div id="InfoBanner">
+        <span class="reversed reversedRight">
+          <span>
+            &#9888;
+          </span>
+        </span>
+        <span class="reversed reversedLeft">
+          Warning {{errors}}!!
+        </span>
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}
