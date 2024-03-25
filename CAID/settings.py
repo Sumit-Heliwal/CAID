@@ -24,24 +24,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-secure-fn+&eu(6)6qzf^1me=lkb($cyr!$7@+%m&%5e49xb$(@duv4v$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# security.W016
-CSRF_COOKIE_SECURE = False
+# # security.W016
+# CSRF_COOKIE_SECURE = False
 
-# security.W012
-SESSION_COOKIE_SECURE = False
+# # security.W012
+# SESSION_COOKIE_SECURE = False
 
-# security.W008
-SECURE_SSL_REDIRECT = False
+# # security.W008
+# SECURE_SSL_REDIRECT = False
 
-# security.W004
-SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+# # security.W004
+# SECURE_HSTS_SECONDS = 31536000 # One year in seconds
 
-# Another security settings
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# # Another security settings
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 
 
 ALLOWED_HOSTS = ['*']
@@ -145,12 +145,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+# STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'')
+STATICFILES_DIRS= (
+    os.path.join(BASE_DIR,''),
+)
 
 # STATIC_ROOT = BASE_DIR / 'productionfiles'
 # STATIC_URL = '/static/'

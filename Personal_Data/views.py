@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import personal_file
@@ -53,6 +53,72 @@ def personal_data(request):
                 return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
     return render( request, "personal_data_search.html", { 'title' : title})
 
+def personal_data_no(request, code__no):
+    title = "Personal Data"
+    if(personal_file.objects.filter(code_no=code__no).exists()):
+        data = personal_file.objects.filter(code_no=code__no)
+        a = True
+        return render(request,'personal_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+    else:
+        errors = 'Invalid code'
+        a = False
+        return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+
+from django.shortcuts import render,redirect, get_object_or_404
+from django.contrib import messages
+
+
+# listings/views.py
+
+# def personal_data_edit(request, id):
+#     band = personal_file.objects.get(code_no=id)
+#     form = Add_Personal_Data(instance=band) # prepopulate the form with an existing band
+#     return render(request,
+#                     'update_data.html',
+#                     {'form': form})
+
+def personal_data_edit(request, id):
+    band = personal_file.objects.get(code_no=id)
+
+    if request.method == 'POST':
+        #https://openclassrooms.com/en/courses/6967196-create-a-web-application-with-django/7349667-update-a-model-object-with-a-modelform
+        #https://stackoverflow.com/questions/63298721/how-to-update-imagefield-in-django
+        form = Add_Personal_Data(request.POST, request.FILES, instance=band)
+        if form.is_valid():
+            # update the existing `Band` in the database
+            # photo = form.save(commit=False)
+            # # set the uploader to the user before saving the model
+            # photo.uploader = request.user
+            # now we can save
+            form.save()            
+            # redirect to the detail page of the `Band` we just updated
+            return redirect('personal_data', band.code_no)
+    else:
+        form = Add_Personal_Data(instance=band)
+
+    return render(request,
+                'update_data.html',
+                {'form': form})
+
+# def personal_data_edit(request, id):
+    title = "Personal Data Edit"
+    instance = get_object_or_404(personal_file, code_no=id)
+    form = Add_Personal_Data()
+    if request.method == 'POST':
+        form = Add_Personal_Data(request.POST, request.FILES, instance = instance)
+        if form.is_valid():
+            photo = form.save(commit=False)
+            # set the uploader to the user before saving the model
+            photo.uploader = request.user
+            # now we can save
+            photo.save()
+            return HttpResponseRedirect(instance.get_absolute_url())
+    context = {
+        "title": title,
+        "instance": instance,
+        "form":form,
+    }
+    return render(request,'update_personal_data.html', context)
 
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")

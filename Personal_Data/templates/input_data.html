@@ -12,8 +12,10 @@
         {% csrf_token %}
         {% for field in data %}
         <tr>
+
           <td>{{ field.label }}</td>
-          <td>{{ field }}</td>
+          <td>{{ field }}</td>{{ field.errors }}
+
         </tr>
         <tr>
           {% endfor %}
