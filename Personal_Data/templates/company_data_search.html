@@ -37,6 +37,24 @@
                         </form>
                     </div>
                 </div>
+                <div class="row mt-2">
+                  <div class="col-lg-10">
+                      <form method="post" style="margin-top: 5%" action="{% url 'company_data_name' %}">
+                          {% csrf_token %}
+                          <div class="row">
+                              <div class="col-lg-6 col-12 mb-3 text-center">
+                                  <label for="name">Name</label>
+                              </div>
+                              <div class="col-lg-6 col-12 mb-3 text-center">
+                                  <input type="text" name="name" maxlength="15" required id="id_name">
+                              </div>
+                              <div class="col-12 text-center">
+                                  <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
                 {% if a == True %}
                 <div class="container col-lg-8 mt-5">
                     <table class="table">

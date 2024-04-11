@@ -1,0 +1,17 @@
+Press WIN+R to open the Run dialog box.
+Type shell:startup and hit Enter to open the Startup folder.
+Simply drag-and-drop (or copy and paste) your batch file into this folder.
+
+
+
+Admin users can setup tasks with elevated privileges via the Task Scheduler:
+
+Open Task Scheduler (Start > Windows Administrative Tools > Task Scheduler).
+Select Create Basic Task.
+Input a Name and Description then click Next.
+Select When I log on then click Next.
+Choose Start a program then click Next.
+Click Browse to find and select your batch file. Then click Next and Finish.
+Right-click the task you just created, select Properties.
+In the General tab, check Run with highest privileges.
+Click OK

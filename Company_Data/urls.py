@@ -10,6 +10,7 @@ urlpatterns = [
     path("hello/<name>", views.hello_there, name="hello_there"),
     path("about/", views.about, name="about"),
     path("company_data/", views.company_data, name="company_data"),
+    path("company_data_name/", views.company_data_name, name="company_data_name"),
     path("company_data_add/", views.company_data_entry, name="company_data_add"),
     # path("contact/", views.contact, name="contact"),
 

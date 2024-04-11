@@ -53,6 +53,20 @@ def company_data(request):
                 return render(request,'company_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
     return render( request, "company_data_search.html", { 'title' : title})
 
+def company_data_name(request):
+    title = "Company Data"
+    if request.method == 'POST':
+            code = request.POST.get('name')
+            if(company_file.objects.filter(name=code).exists()):
+                data = company_file.objects.filter(name=code)
+                a = True
+                return render(request,'company_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+            else:
+                errors = 'Invalid name'
+                a = False
+                return render(request,'company_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "company_data_search.html", { 'title' : title})
+
 
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")
