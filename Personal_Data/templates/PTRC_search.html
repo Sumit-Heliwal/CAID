@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block title %}
+{{title}}{% endblock %}
+{% block heading %}
+{{title}}{% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+
+
+
+<style>
+    .btnsubmit {
+        width: 80px;
+        height: 35px;
+    }
+</style>
+
+                        
+                <div class="row mt-2">
+                    <div class="col-lg-10">
+                        <form method="post" style="margin-top: 5%" action="{% url 'PTRC' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6 col-12 mb-3 text-center">
+                                    <label for="PTEC no">PTRC no</label>
+                                </div>
+                                <div class="col-lg-6 col-12 mb-3 text-center">
+                                    <input type="text" name="DIN_no" maxlength="24" required id="id_DIN_no">
+                                </div>
+                                <div class="col-12 text-center">
+                                    <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+               
+                {% if a == True %}
+                <div class="container col-lg-8 mt-5">
+                    <table class="table">
+                      <div class="container col-lg-8 mt-5">
+                        <table class="table">
+    
+                            <tbody>
+                              {% for each in data %}
+                              <table class="table">
+                                  <tbody>
+                                      {% for key,value in each.items %}
+                                      <tr>
+                                      <td>{{key}} </td>:<td>{{value}}</td>
+                                  </tr>
+                              
+                                  {%endfor%}
+                                  {%endfor%}
+                            </tbody>
+                        </table>
+                        <hr>
+                </div>
+                        <tbody>
+                            {% for each in data %}
+                            <tr>
+                              <td>PTEC no</td>
+                              <td>{{each.PTEC_no}}</td>
+                            </tr>
+                            <tr>
+                              <td>PTEC date</td>
+                              <td>{{each.PTEC_date}}</td>
+                            </tr>
+                            <tr>
+                              <td>PTEC year</td>
+                              <td>{{each.PTEC_year}}</td>
+                            </tr>
+                              <tr>
+                                <td>PTEC proof</td>
+                                <td>
+                                  {% if each.PTEC_proof %}
+                                  <a href="/media/{{each.PTEC_proof}}">PTEC_proof</a>
+                                  {% else %}
+                                  PTEC_proof not uploaded
+                                  {% endif %}
+                               </td>
+                              </tr>
+                              
+                              <tr>
+                                <td>Remarks</td>
+                                    <td>
+                                        {{each.Remarks}}
+                                    </td>
+                              </tr>
+                              <tr> <td style="text-align: center ">
+                                <a href=" {% url 'PTEC_edit' %}{{ each.PTEC_no }}" class="btn btn-primary btnsubmit">Edit</a>
+                              </td> </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                    <hr>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if a == False %}
+    <div id="InfoBanner">
+        <span class="reversed reversedRight">
+          <span>
+            &#9888;
+          </span>
+        </span>
+        <span class="reversed reversedLeft">
+          Warning {{errors}}!!
+        </span>
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}

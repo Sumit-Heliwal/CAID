@@ -18,7 +18,7 @@ class personal_file(models.Model):
     gst = models.FileField(upload_to='personal_file', blank=True, null=True)
     gst_no = models.CharField(max_length=50)
     din = models.FileField(upload_to='personal_file', blank=True, null=True)
-    din_no = models.CharField(max_length=50)
+    din_no = models.CharField(max_length=50, unique= True)
     PTEC = models.FileField(upload_to='personal_file', blank=True, null=True)
     PTEC_no = models.CharField(max_length=50)
     
@@ -28,5 +28,4 @@ class personal_file(models.Model):
     
     def __str__(self):
          return (self.code_no)
-    
     

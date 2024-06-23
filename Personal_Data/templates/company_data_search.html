@@ -238,7 +238,9 @@
                                         {{each.Remarks}}
                                     </td>
                               </tr>
-                              
+                              <tr> <td style="text-align: center ">
+                                <a href=" {% url 'company_data_edit' %}{{ each.code_no }}" class="btn btn-primary btnsubmit">Edit</a>
+                              </td> </tr>
                             {%endfor%}
                         </tbody>
                     </table>

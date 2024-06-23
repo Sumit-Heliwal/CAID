@@ -79,7 +79,6 @@ def personal_data_no(request, code__no):
         return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
 
 from django.shortcuts import render,redirect, get_object_or_404
-from django.contrib import messages
 
 
 # listings/views.py

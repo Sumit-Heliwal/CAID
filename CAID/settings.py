@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'whitenoise',
     'Personal_Data',
     'Company_Data',
+    'Reporting_Data',
        
 ]
 
@@ -147,7 +148,7 @@ USE_TZ = True
 
 # LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 # STATIC_URL = "/static/"
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # MEDIA_URL = "/media/"
 # MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -177,8 +178,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+     "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    # # ...
+    # "staticfiles": {
+    #     "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    # },
 }
