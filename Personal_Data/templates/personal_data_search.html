@@ -37,167 +37,85 @@
                         </form>
                     </div>
                 </div>
+                <div class="row mt-2">
+                  <div class="col-lg-10">
+                      <form method="post" style="margin-top: 5%" action="{% url 'personal_data_name' %}">
+                          {% csrf_token %}
+                          <div class="row">
+                              <div class="col-lg-6 col-12 mb-3 text-center">
+                                  <label for="Name">Name</label>
+                              </div>
+                              <div class="col-lg-6 col-12 mb-3 text-center">
+                                  <input type="text" name="name" maxlength="15" required id="id_name">
+                              </div>
+                              <div class="col-12 text-center">
+                                  <input type="submit" class="btn btn-primary btnsubmit" value="Submit">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
                 {% if a == True %}
                 <div class="container col-lg-8 mt-5">
                     <table class="table">
 
                         <tbody>
+                          <tr>
+                            <td>Code no</td>
+                         
+                            
+                          
+                            <td>Name</td>
+                                                      
+                          
+                            <td>Pan no</td>
+                          
+                            
+                          
+                            <td>Gst no</td>
+                         
+                            
+                          
+                            <td>Din no</td>
+                          
+                            
+                          
+                            <td>PTEC no</td>
+                          
+                          
+
+                         <td style="text-align: center ">
+                            EDIT
+                          </td> 
+			</tr>                        
                             {% for each in data %}
                             <tr>
-                                <td>Code no</td>
-                                <td>{{each.code_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Name</td>
-                                <td>{{each.name}}</td>
-                              </tr>
-                              <tr>
-                                <tr>
-                                    <td>Passport Size Photo</td>
-                                    <td>
-                                    {% if each.passport_size_photo %}
-                                        <a href="/media/{{each.passport_size_photo}}">Passport Size Photo</a>
-                                        {% else %}
-                                        Passport Size Photo not uploaded
-                                      {% endif %}
-                                      
-                                      </td>
-                                  </tr>
-
-                                <tr>
-                                    <td>Pan card</td>
-                                    <td>
-                                    {% if each.pan_card %}
-                                      <a href="/media/{{each.pan_card}}">Pan Card</a>
-                                    {% else %}
-                                      Pan Card not uploaded
-                                    {% endif %}
-                                    </td>
-                                  </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Pan no</td>
-                                <td>{{each.pan_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Aadhar Card</td>
-                                <td>
-                                  {% if each.aadhar_card %}
-                                    <a href="/media/{{each.aadhar_card}}">Aadhar</a>
-                                    {% else %}
-                                    Aadhar not uploaded
-                                    {% endif %}
-                                </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Aadhar Card No</td>
-                                <td>{{each.aadhar_card_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Passport</td>
-                                <td>
-                                  {% if each.passport %}
-                                    <a href="/media/{{each.passport}}">Passport</a>
-                                    {% else %}
-                                    Passport not uploaded
-                                    {% endif %}
-                                </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>passport no</td>
-                                <td>{{each.passport_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Driving Licence</td>
-                                <td>
-                                  {% if each.driving_licence %}
-                                  <a href="/media/{{each.driving_licence}}">Driving Licence</a>
-                                  {% else %}
-                                  Driving Licence not uploaded
-                                  {% endif %}
-                              </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Driving Licence No</td>
-                                <td>{{each.driving_licence_no}}</td>
-                              </tr>
-                              <tr>
-                              <tr>
-                                <td>Gst</td>
-                                <td>
-                                  {% if each.gst %}
-                                  <a href="/media/{{each.gst}}">Gst</a>
-                                  {% else %}
-                                  Gst not uploaded
-                                  {% endif %}
-                               </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Gst no</td>
-                                <td>{{each.gst_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Din</td>
-                                <td>
-                                  {% if each.din %}
-                                  <a href="/media/{{each.din}}">DIN</a>
-                                  {% else %}
-                                  DIN not uploaded
-                                  {% endif %}
-                              </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Din no</td>
-                                <td>{{each.din_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>PTEC</td>
-                                <td>
-                                  {% if each.PTEC %}
-                                  <a href="/media/{{each.PTEC}}">PTEC</a>
-                                  {% else %}
-                                  PTEC not uploaded
-                                  {% endif %}
-                               </td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>PTEC no</td>
-                                <td>{{each.PTEC_no}}</td>
-                              </tr>
-                              <tr>
-                                
-                              <tr>
-                                <td>Remarks</td>
-                                    <td>
-                                        {{each.Remarks}}
-                                    </td>
-                              </tr>
+                              <td><a href=" {% url 'personal_data' %}{{ each.code_no }}">{{ each.code_no }}</a></td>
+                            
                               
+                            
+                              <td>{{each.name}}</td>
+                            
+                              
+                            
+                              <td>{{each.pan_no}}</td>
+                            
+                              
+                            
+                              <td>{{each.gst_no}}</td>
+                            
+                              
+                            
+                              <td><a href=" {% url 'DIN_KYC' %}{{each.din_no}}">{{each.din_no}} </a></td>
+                            
+                              
+                            
+                              <td><a href=" {% url 'PTEC' %}{{each.PTEC_no}}">{{each.PTEC_no}}</a></td>
+                            
+                             <td style="text-align: center ">
+                              <a href=" {% url 'personal_data_edit' %}{{ each.code_no }}" class="btn btn-primary btnsubmit">Edit</a>
+                            </td> </tr>
+                          
                             {%endfor%}
                         </tbody>
                     </table>

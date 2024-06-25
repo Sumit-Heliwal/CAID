@@ -39,7 +39,7 @@ def personal_data_entry(request):
             return redirect("personal_data") 
     return render(request, "input_data.html" , {'data': form , 'title':title})
 
-def personal_data(request):
+# def personal_data(request):
     title = "Personal Data"
     if request.method == 'POST':
             code = request.POST.get('code_no')
@@ -52,20 +52,38 @@ def personal_data(request):
                 a = False
                 return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
     return render( request, "personal_data_search.html", { 'title' : title})
+def personal_data(request):
+    title = "Personal Data"
+    data = personal_file.objects.all()
+    a = True
+    return render(request,'personal_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+
+def personal_data_name(request):
+    title = "Personal Data"
+    if request.method == 'POST':
+            code = request.POST.get('name')
+            if(personal_file.objects.filter(name=code).exists()):
+                data = personal_file.objects.filter(name=code)
+                a = True
+                return render(request,'personal_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+            else:
+                errors = 'Invalid name'
+                a = False
+                return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "personal_data_search.html", { 'title' : title})
 
 def personal_data_no(request, code__no):
     title = "Personal Data"
     if(personal_file.objects.filter(code_no=code__no).exists()):
         data = personal_file.objects.filter(code_no=code__no)
         a = True
-        return render(request,'personal_data_search.html' ,{'title' : title , 'data' : data , 'a' : a })     
+        return render(request,'personal_data.html' ,{'title' : title , 'data' : data , 'a' : a })     
     else:
         errors = 'Invalid code'
         a = False
-        return render(request,'personal_data_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+        return render(request,'personal_data.html' ,{'title' : title , 'errors': errors , 'a' : a})     
 
 from django.shortcuts import render,redirect, get_object_or_404
-from django.contrib import messages
 
 
 # listings/views.py

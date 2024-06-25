@@ -12,8 +12,10 @@ urlpatterns = [
     path("hello/<name>", views.hello_there, name="hello_there"),
     path("about/", views.about, name="about"),
     path("personal_data/", views.personal_data, name="personal_data"),
+    path("personal_data_name/", views.personal_data_name, name="personal_data_name"),
     path("personal_data/<str:code__no>/", views.personal_data_no, name="personal_data"),
     path('personal_data_edit/<str:id>/', views.personal_data_edit, name='personal_data_edit'),
+    path('personal_data_edit/', views.personal_data, name='personal_data_edit'),
     path("personal_data_add/", views.personal_data_entry, name="personal_data_add"),
     # path("contact/", views.contact, name="contact"),
 
